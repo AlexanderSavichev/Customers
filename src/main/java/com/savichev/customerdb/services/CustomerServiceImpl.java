@@ -54,6 +54,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Optional<UserInfo> findUserByNameAndSurname(String name, String surname) {
+        UserInfo userInfo = customerRepo.findUserInfoByNameAndSurname(name, surname);
+        return Optional.ofNullable(userInfo);
+    }
+
+    @Override
     public void deleteUser(int id) {
         Optional <UserInfo> userInfo = customerRepo.findById(id);
         if(userInfo.isPresent())

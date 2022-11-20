@@ -31,15 +31,21 @@ public class CustomerController {
         return customerService.getAllUsers();
     }
 
-    @DeleteMapping("/deleteUser/{id}")
-    public void deleteUser (@PathVariable("id") int id){
-        customerService.deleteUser(id);
+    @GetMapping("/findUserByNameAndSurname")
+    @ResponseBody
+    public UserInfo findUserByNameAndSurname (@RequestParam ("name") String name, @RequestParam ("surname") String surname){
+        return customerService.findUserByNameAndSurname(name, surname).orElseThrow(UserNotFoundException::new);
     }
 
     @GetMapping("/findUserByEmail/{email}")
     @ResponseBody
     public UserInfo findUserByEmail(@PathVariable ("email") String email){
         return customerService.findUserByEmail(email).orElseThrow(UserNotFoundException::new);
+    }
+
+    @DeleteMapping("/deleteUser/{id}")
+    public void deleteUser (@PathVariable("id") int id){
+        customerService.deleteUser(id);
     }
 
 }

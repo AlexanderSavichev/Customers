@@ -10,5 +10,6 @@ public interface CustomerService {
     public UserInfo saveUser (UserInfo userInfo);
     public List<UserInfo> getAllUsers();
     public Optional<UserInfo> findUserByEmail(String email);
+    public Optional<UserInfo> findUserByNameAndSurname(String name, String surname);
     void deleteUser (int id);
 }
