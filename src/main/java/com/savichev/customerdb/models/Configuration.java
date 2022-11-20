@@ -20,7 +20,7 @@ public class Configuration {
     private String cooler;
     private String box;
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private UserInfo userInfo;
 
     public int getId() {

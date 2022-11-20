@@ -1,5 +1,6 @@
 package com.savichev.customerdb.services;
 
+import com.savichev.customerdb.models.Configuration;
 import com.savichev.customerdb.models.UserInfo;
 import com.savichev.customerdb.repositories.ConfigurationRepo;
 import com.savichev.customerdb.repositories.CustomerRepo;
@@ -27,6 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 //        }
         UserInfo userInfo = customerRepo.findUserInfoByEmail(savedUserInfo.getEmail());
         if (userInfo!=null){
+
             userInfo.setConfigurations(savedUserInfo.getConfigurations());
             return customerRepo.save(userInfo);
         }
