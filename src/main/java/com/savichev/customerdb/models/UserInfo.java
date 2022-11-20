@@ -1,15 +1,11 @@
 package com.savichev.customerdb.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import javax.persistence.*;
-import java.util.HashSet;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 public class UserInfo {
@@ -19,16 +15,20 @@ public class UserInfo {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
     @Column(name = "name",unique = false, nullable=false)
+    @NotBlank(message = "Name is mandatory")
     private String name;
     @Column(name = "surname",unique = false, nullable=false)
+    @NotBlank(message = "Surname is mandatory")
     private String surname;
     @Column(name = "company",unique = false, nullable=false)
     private String company;
     @Column(name = "email",unique = false, nullable=false)
+    @NotBlank(message = "Email is mandatory")
+    @Email
     private String email;
 
     @OneToMany(targetEntity = Configuration.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "User_ID")
+    //@JoinColumn(name = "User_ID")
     @JsonManagedReference
     private List<Configuration> configurations;
 
@@ -79,10 +79,5 @@ public class UserInfo {
     public void setEmail(String email) {
         this.email = email;
     }
-
-//    @OneToMany(targetEntity = Configuration.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JsonManagedReference
-//    List<Configuration> configurations;
-
 
 }

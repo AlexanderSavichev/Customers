@@ -1,8 +1,7 @@
 package com.savichev.customerdb.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Configuration {
@@ -11,17 +10,33 @@ public class Configuration {
     @SequenceGenerator(name="configuration_generator", sequenceName = "configuration_seq", allocationSize=50)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
+    @NotNull
     private String title;
+    @NotNull
     private String cpu;
+    @NotNull
     private String gpu;
+    @NotNull
     private String ram;
+    @NotNull
     private String storage;
+    @NotNull
     private String motherboard;
+    @NotNull
     private String cooler;
+    @NotNull
     private String box;
     @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.ALL, CascadeType.MERGE})
     private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public int getId() {
         return id;
