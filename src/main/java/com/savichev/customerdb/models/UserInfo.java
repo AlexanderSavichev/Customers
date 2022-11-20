@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
@@ -16,14 +17,18 @@ public class UserInfo {
     private Integer id;
     @Column(name = "name",unique = false, nullable=false)
     @NotBlank(message = "Name is mandatory")
+    @NotNull(message = "Name has to be non null")
     private String name;
     @Column(name = "surname",unique = false, nullable=false)
     @NotBlank(message = "Surname is mandatory")
+    @NotNull(message = "Surname has to be non null")
     private String surname;
     @Column(name = "company",unique = false, nullable=false)
+    @NotNull(message = "Company has to be non null")
     private String company;
     @Column(name = "email",unique = false, nullable=false)
     @NotBlank(message = "Email is mandatory")
+    @NotNull(message = "Email has to be non null")
     @Email
     private String email;
 

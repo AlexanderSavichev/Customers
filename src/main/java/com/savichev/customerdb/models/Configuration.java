@@ -10,21 +10,21 @@ public class Configuration {
     @SequenceGenerator(name="configuration_generator", sequenceName = "configuration_seq", allocationSize=50)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
-    @NotNull
+    @NotNull(message = "Title has to be non Null")
     private String title;
-    @NotNull
+    @NotNull(message = "CPU has to be non Null")
     private String cpu;
-    @NotNull
+    @NotNull(message = "GPU has to be non Null")
     private String gpu;
-    @NotNull
+    @NotNull(message = "RAM has to be non Null")
     private String ram;
-    @NotNull
+    @NotNull(message = "Storage has to be non Null")
     private String storage;
-    @NotNull
+    @NotNull(message = "Motherboard has to be non Null")
     private String motherboard;
-    @NotNull
+    @NotNull(message = "Cooler has to be non Null")
     private String cooler;
-    @NotNull
+    @NotNull(message = "Box has to be non Null")
     private String box;
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL, CascadeType.MERGE})
