@@ -9,5 +9,6 @@ import java.util.List;
 public interface CustomerService {
     public UserInfo saveUser (UserInfo userInfo);
     public List<UserInfo> getAllUsers();
+    public Object isEmailExists(String email);
     void deleteUser (int id);
 }

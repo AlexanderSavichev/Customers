@@ -17,13 +17,34 @@ public class CustomerServiceImpl implements CustomerService {
     private ConfigurationRepo configurationRepo;
 
     @Override
-    public UserInfo saveUser(UserInfo userInfo) {
-        return customerRepo.save(userInfo);
+    public UserInfo saveUser(UserInfo savedUserInfo) {
+//        try {
+//            return customerRepo.save(userInfo);
+//        }
+//        catch (Exception e){
+//            System.out.print("Error occurred while trying to save data");
+//            return null;
+//        }
+        UserInfo userInfo = customerRepo.findUserInfoByEmail(savedUserInfo.getEmail());
+        if (userInfo!=null){
+            userInfo.setConfigurations(savedUserInfo.getConfigurations());
+            return customerRepo.save(userInfo);
+        }
+        else {
+            return customerRepo.save(savedUserInfo);
+        }
+
     }
 
     @Override
     public List<UserInfo> getAllUsers() {
         return customerRepo.findAll();
+    }
+
+    @Override
+    public Optional<UserInfo> isEmailExists(String email) {
+        UserInfo userInfo = customerRepo.findUserInfoByEmail(email);
+        return Optional.ofNullable(userInfo);
     }
 
     @Override
