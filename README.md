@@ -8,6 +8,7 @@ In order to run this App, you should use backend version of this application. Af
  - http://localhost:8080/customer/findUser to find all records
  - http://localhost:8080/customer/findUserByEmail/{email} to find user info by selected Email adress
  - http://localhost:8080/customer/deleteUser/{id} to delete record by selected Id
+ - http://localhost:8080/customer/findUserByNameAndSurname?name={name}&surname={surname} - to search data by first and last name
  
  JSON structure for a test is below:
 
