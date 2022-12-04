@@ -1,5 +1,6 @@
 package com.savichev.customerdb.services;
 
+import com.savichev.customerdb.models.Configuration;
 import com.savichev.customerdb.models.UserInfo;
 import com.savichev.customerdb.repositories.ConfigurationRepo;
 import com.savichev.customerdb.repositories.CustomerRepo;
@@ -54,6 +55,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Optional<UserInfo> findUserById(int id) {
+        UserInfo userInfo = customerRepo.findUserInfoById(id);
+        return Optional.ofNullable(userInfo);
+    }
+
+    @Override
     public Optional<UserInfo> findUserByNameAndSurname(String name, String surname) {
         UserInfo userInfo = customerRepo.findUserInfoByNameAndSurname(name, surname);
         return Optional.ofNullable(userInfo);
@@ -64,5 +71,18 @@ public class CustomerServiceImpl implements CustomerService {
         Optional <UserInfo> userInfo = customerRepo.findById(id);
         if(userInfo.isPresent())
             customerRepo.deleteById(id);
+    }
+
+    @Override
+    public List<Configuration> findConfById(int id) {
+        List<Configuration> configuration = configurationRepo.findConfigurationById(id);
+        return configuration;
+    }
+
+    @Override
+    public void deleteConfig(int id) {
+        Optional<Configuration> configuration = configurationRepo.findById(id);
+        if(configuration.isPresent())
+            configurationRepo.deleteById(id);
     }
 }

@@ -26,6 +26,8 @@ public class Configuration {
     private String cooler;
     @NotNull(message = "Box has to be non Null")
     private String box;
+
+
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL, CascadeType.MERGE})
     private UserInfo userInfo;

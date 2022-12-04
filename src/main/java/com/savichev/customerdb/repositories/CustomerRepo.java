@@ -8,5 +8,7 @@ public interface CustomerRepo extends JpaRepository<UserInfo, Integer> {
     @Query("SELECT c FROM UserInfo c WHERE c.email =:email")
     UserInfo findUserInfoByEmail(String email);
     UserInfo findUserInfoByNameAndSurname(String name, String surname);
+    UserInfo findUserInfoById (int id);
+
 
 }
